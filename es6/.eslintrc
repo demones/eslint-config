@@ -235,13 +235,13 @@
     "experimentalObjectRestSpread": true
   },
   "globals": {//定义全局的变量
-
+    "require": true,
   },
   "extends": [//配置不检测的js文件
 
   ],
   "plugins": [//定义第三方插件
-    "react"
+    //"react"
   ],
   "settings": {//设置
     "sharedData": "sharedName"
