@@ -202,7 +202,7 @@
     "require-yield": 2,//generator functions 应该有 yield
 
     //react rules，默认设置为警告
-    "react/display-name": 1,//是否检测需要为React Component 设置一个 displayName
+    //"react/display-name": 1,//是否检测需要为React Component 设置一个 displayName
     "react/forbid-prop-types": 1,//是否检测使用了React.PropTypes.any React.PropTypes.array 或 React.PropTypes.object，如果开启该规则，则不允许使用React.PropTypes，默认该规则是关闭的
     "react/jsx-boolean-value": 1,//该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
     "react/jsx-closing-bracket-location": 1,//检测jsx tag 闭合书写规范
@@ -211,7 +211,7 @@
     "react/jsx-max-props-per-line": 1,//jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
     "react/jsx-no-bind": 1,//不必要的地方不使用bind
     "react/jsx-no-duplicate-props": 1,//给jsx设置同名的属性会警告
-    "react/jsx-no-literals": 1,//不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
+    //"react/jsx-no-literals": 1,//不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
     "react/jsx-no-undef": 1,//检测定义了jsx component 而没有被调用
     "react/jsx-quotes": [1, "double"],//检测属性值是单引号还是双引号
     "react/jsx-sort-prop-types": 1,//检测propTypes属性值是否应该按字母排序定义
@@ -267,7 +267,8 @@
     "experimentalObjectRestSpread": true
   },
   "globals": {//定义全局的变量
-    "React": true
+    "React": true,
+    "ReactDOM": true
   },
   "extends": [//配置不检测的js文件
 
