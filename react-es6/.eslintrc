@@ -199,7 +199,39 @@
     "prefer-reflect": 0,//尽量使用 Reflect
     "prefer-spread": 2,//不要使用apply，应该使用扩展操作符来调用 Math.max(...args);
     "prefer-template": 2,//建议使用模板符来替代引号，比如 var str = `Hello, ${name}!`;
-    "require-yield": 2//generator functions 应该有 yield
+    "require-yield": 2,//generator functions 应该有 yield
+
+    //react rules，默认设置为警告
+    "react/display-name": 1,//是否检测需要为React Component 设置一个 displayName
+    "react/forbid-prop-types": 1,//是否检测使用了React.PropTypes.any React.PropTypes.array 或 React.PropTypes.object，如果开启该规则，则不允许使用React.PropTypes，默认该规则是关闭的
+    "react/jsx-boolean-value": 1,//该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
+    "react/jsx-closing-bracket-location": 1,//检测jsx tag 闭合书写规范
+    "react/jsx-curly-spacing": 1,//检测赋值是否有空格，默认是不应该有空格的，但换行不检测，比如 <Hello name={firstname } />;
+    "react/jsx-indent-props": [1, 2],//jsx语法换行缩进几个空格（或制表符）
+    "react/jsx-max-props-per-line": 1,//jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
+    "react/jsx-no-bind": 1,//不必要的地方不使用bind
+    "react/jsx-no-duplicate-props": 1,//给jsx设置同名的属性会警告
+    "react/jsx-no-literals": 1,//不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
+    "react/jsx-no-undef": 1,//检测定义了jsx component 而没有被调用
+    "react/jsx-quotes": [1, "double"],//检测属性值是单引号还是双引号
+    "react/jsx-sort-prop-types": 1,//检测propTypes属性值是否应该按字母排序定义
+    "react/jsx-sort-props": 1,//检测属性值是否按字符排序
+    "react/jsx-uses-react": 1,//React声明了而没有被调用
+    "react/jsx-uses-vars": 1,//jsx组件被定义而没有被调用
+    "react/no-danger": 1,//不要使用不安全的名称来定义属性，不如 __html，看 https://facebook.github.io/react/tips/dangerously-set-inner-html.html
+    "react/no-did-mount-set-state": 1,//在componentDidMount 中不要使用 setState 方法
+    "react/no-did-update-set-state": 1,//在componentDidUpdate 中不要使用 setState 方法
+    "react/no-direct-mutation-state": 1,//不要直接使用 this.state 来改变值，而应该用 this.setState
+    "react/no-multi-comp": [1, { "ignoreStateless": true }],//每个文件是否可以定义多个 React component
+    "react/no-set-state": 1,//是否允许使用 setState 
+    "react/no-unknown-property": 1,//不要使用扁平或不接受的属性名称，比如class，而用className，属性名应该是驼峰式命名
+    "react/prefer-es6-class": 1,//是否是基于es6 class 写法
+    "react/prop-types": 1,//所有的props中的属性应该提前声明在propTypes中
+    "react/react-in-jsx-scope": 1,//上下文的检测
+    "react/require-extension": [1, { "extensions": [".js", ".jsx"] }],//扩展名，默认是.jsx，可以设置为 .js 和 .jsx
+    "react/self-closing-comp": 1,//组件如果中间没有内容，应该用简写形式关闭，如 <Hello name="John" /> 不能写成 <Hello name="John" ></Hello>
+    "react/sort-comp": 1,//组件方法是否应该按 lifecycle methods 排序书写，详细查看这里 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
+    "react/wrap-multilines": 1//对于当行 jsx 书写应该用括号括起来
   },
   //"parser": "esprima",//指定默认解析器
   "env": {
@@ -235,13 +267,13 @@
     "experimentalObjectRestSpread": true
   },
   "globals": {//定义全局的变量
-    "require": true
+    "React": true
   },
   "extends": [//配置不检测的js文件
 
   ],
   "plugins": [//定义第三方插件
-    //"react"
+    "react"
   ],
   "settings": {//设置
     "sharedData": "sharedName"

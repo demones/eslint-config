@@ -47,7 +47,7 @@
     "default-case": 2,//在 switch语句中，检测是否有默认分支
     "dot-location": 0,//在换行时，用来检测对象的点是换行之前还是之后，我们关闭该规则
     "dot-notation": 2,//对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
-    "eqeqeq": 2,//使用恒等来比较两个变量
+    "eqeqeq": [2, "allow-null"],//使用恒等来比较两个变量
     "guard-for-in": 2,//在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     "no-alert": 2,//不允许用alert语句
     "no-caller": 2,//不允许用 arguments.caller 和 arguments.callee
@@ -55,7 +55,7 @@
     "no-else-return": 2,//如果在if语句中有return，则在else中可以不用return，可以放到最外面返回
     "no-empty-label": 2,//不允许使用 label 语句
     "no-empty-pattern": 2,//不允许空的解构赋值，例如 var {a: {}} = foo;
-    "no-eq-null": 2,//对于null比较也应该使用 === 来比较
+    //"no-eq-null": 2,//对于null比较也应该使用 === 来比较
     "no-eval": 2,//不允许使用 eval()
     "no-extend-native": 2,//不允许修改扩展内置对象的属性，比如 Object.prototype.a = "a";
     "no-extra-bind": 2,//可以规范代码，防止滥用 bind 方法
@@ -68,7 +68,7 @@
     "no-labels": 2,//不建议使用标签表达式
     "no-lone-blocks": 2,//禁止内部不必要的嵌套块
     "no-loop-func": 2,//不要在循环中定义函数，并且该函数中调用了循环变量
-    "no-magic-numbers": 2,//一些系数最好定义为常量
+    //"no-magic-numbers": 2,//一些系数最好定义为常量
     "no-multi-spaces": 0,//表达式中是否允许有多余的空格
     "no-multi-str": 2,//是否允许多行字符串
     "no-native-reassign": 2,//不要重新修改内置对象，如 String = new Object();
@@ -111,7 +111,7 @@
     定义了，但没有使用该变量，vars 有两种选择 all 和 local；args 有三种选择，all after-used 和 none
     我们可以只检测变量而不检测函数参数，可以把 args 设为 none
     **/
-    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],//设置为只检测变量，不检测函数参数
     "no-use-before-define": [2, "nofunc"],//变量和函数的声明需要在使用之前，可以设置 [2, "nofunc"]，只检测变量，而不检测函数
 
     //Node.js and CommonJS
@@ -133,7 +133,7 @@
     "comma-style": 2,//当换行时，逗号是在当前行还是下一行，默认是当前行
     "computed-property-spacing": 2,//用[]取属性值时，是否应该有空格
     "consistent-this": [2, "self"],//闭包的时候，this 用变量声明上下文应该统一，该变量就不用用在其他定义变量上
-    "eol-last": 2,//在行的末尾加上分号
+    "eol-last": 2,//在文件代码末尾是否加上一新行
     "func-names": 0,//函数表达式需要一个名称，包括匿名函数，该规则可以关闭
     "func-style": 0,//是声明式的函数，还是定义变量式的函数
     "id-length": 0,//定义变量名或属性名的最小最大长度
@@ -181,61 +181,18 @@
     "space-return-throw-case": 2,//在return, throw, and case 后添加空白
     "space-unary-ops": 2,//在一元操作符前或后不应该有空白
     "spaced-comment": 0,//如果开启，则会检测注释符后是否有空白，always必须有，而never则没有
-    "wrap-regex": 0,//字面正则表达式需要用括号括起来
-
-    // es6
-    "arrow-parens": 2,//对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
-    "arrow-spacing": 2,//箭头函数中，箭头运算符前后需要添加空白
-    "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
-    "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
-    "no-class-assign": 2,//不能再修改已经声明的类，即不能重现给已经声明的类赋其他值
-    "no-const-assign": 2,//不能修改常量值
-    "no-dupe-class-members": 2,//类成员不能重复定义
-    "no-this-before-super": 2,//不允许在 super() 之前使用 this/super 语句
-    "no-var": 2,//在需要使用const 或 let 声明时不要使用var
-    "object-shorthand": 2,//利用简写法来定义对象属性，如 var foo = {x, y, z}; 表示 var foo = {x:x, y:y, z:z};
-    "prefer-arrow-callback": 2,//建议使用箭头函数作为回调函数
-    "prefer-const": 0,//能使用常量的地方尽量使用const
-    "prefer-reflect": 0,//尽量使用 Reflect
-    "prefer-spread": 2,//不要使用apply，应该使用扩展操作符来调用 Math.max(...args);
-    "prefer-template": 2,//建议使用模板符来替代引号，比如 var str = `Hello, ${name}!`;
-    "require-yield": 2//generator functions 应该有 yield
+    "wrap-regex": 0//字面正则表达式需要用括号括起来
   },
   //"parser": "esprima",//指定默认解析器
   "env": {
-    "es6": true,
     "node": true,
     "browser": true,
-    "jquery": true
-  },
-  "ecmaFeatures": {//es6及next
-    "arrowFunctions": true,//允许箭头函数
-    "binaryLiterals": true,// enable binary literals
-    "blockBindings": true,// enable let and const (aka block bindings)
-    "classes": true,// enable classes
-    "defaultParams": true,// enable default function parameters
-    "destructuring": true,// enable destructuring
-    "forOf": true,// enable for-of loops
-    "generators": true,// enable generators
-    "modules": true,// enable modules and global strict mode
-    "objectLiteralComputedProperties": true,// enable computed object literal property names
-    "objectLiteralDuplicateProperties": true,// enable duplicate object literal properties in strict mode
-    "objectLiteralShorthandMethods": true,// enable object literal shorthand methods
-    "objectLiteralShorthandProperties": true,// enable object literal shorthand properties
-    "octalLiterals": true,// enable octal literals
-    "regexUFlag": true,// enable the regular expression u flag
-    "regexYFlag": true,// enable the regular expression y flag
-    "restParams": true,// enable the rest parameters
-    "spread": true,// enable the spread operator for arrays
-    "superInFunctions": true,// enable super references inside of functions
-    "templateStrings": true,// enable template strings
-    "unicodeCodePointEscapes": true,// enable code point escapes
-    "globalReturn": true,// allow return statements in the global scope
-    "jsx": true,// enable JSX
-    "experimentalObjectRestSpread": true
+    "jquery": true,
+    "mocha": true
   },
   "globals": {//定义全局的变量
-    "require": true
+    "require": true,
+    "angular": true
   },
   "extends": [//配置不检测的js文件
 
