@@ -1,7 +1,7 @@
 {
   "rules": {
     // Possible Errors
-    "comma-dangle": [2, "never"],//在对象最后添加一个逗号是否被允许
+    //"comma-dangle": [2, "never"],//在对象最后添加一个逗号是否被允许
     "no-cond-assign": 2,//条件语句中，不应该出现 = ，比如 if (x = 0) {  } 是会报错的
     "no-console": 0,//是否允许 console
     "no-constant-condition": 2,//是否允许使用常量式表达式 if (false) { }
@@ -22,7 +22,7 @@
     **/
     "no-ex-assign": 2,
     "no-extra-boolean-cast": 2,//在条件语句中不允许使用!!  比如 if (!!foo) {   }   /*error Redundant double negation in an if statement condition.*/
-    "no-extra-parens": 2,//不要使用冗余的括号，比如 a = (b * c);
+    //"no-extra-parens": 2,//不要使用冗余的括号，比如 a = (b * c);
     "no-extra-semi": 2,//不要使用多余的分号;  比如 var x = 5;;
     "no-func-assign": 2,//不允许给函数重新赋值  function foo() {} foo = bar; /*error 'foo' is a function.*/
     "no-inner-declarations": 2,//不要在函数体或程序块（if或循环）中声明函数
@@ -68,7 +68,7 @@
     "no-labels": 2,//不建议使用标签表达式
     "no-lone-blocks": 2,//禁止内部不必要的嵌套块
     "no-loop-func": 2,//不要在循环中定义函数，并且该函数中调用了循环变量
-    "no-magic-numbers": 2,//一些系数最好定义为常量
+    //"no-magic-numbers": 2,//一些系数最好定义为常量
     "no-multi-spaces": 0,//表达式中是否允许有多余的空格
     "no-multi-str": 2,//是否允许多行字符串
     "no-native-reassign": 2,//不要重新修改内置对象，如 String = new Object();
@@ -111,7 +111,7 @@
     定义了，但没有使用该变量，vars 有两种选择 all 和 local；args 有三种选择，all after-used 和 none
     我们可以只检测变量而不检测函数参数，可以把 args 设为 none
     **/
-    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
     "no-use-before-define": [2, "nofunc"],//变量和函数的声明需要在使用之前，可以设置 [2, "nofunc"]，只检测变量，而不检测函数
 
     //Node.js and CommonJS
@@ -158,7 +158,7 @@
     "no-restricted-syntax": [2, "WithStatement"],//可以指定不允许的语法
     "no-spaced-func": 2,//函数调用时，不要在函数名与(见有空格或换行
     "no-ternary": 0,//是否允许三元操作符
-    "no-trailing-spaces": 2,//不允许行尾有空白字符
+    //"no-trailing-spaces": 2,//不允许行尾有空白字符
     "no-underscore-dangle": 0,//是否允许变量名前后有 _
     "no-unneeded-ternary": 2,//请不要使用不必要的三元表达式，比如 var isYes = answer === 1 ? true : false;
     "object-curly-spacing": 2,//验证花括号内的空格
@@ -267,8 +267,7 @@
     "experimentalObjectRestSpread": true
   },
   "globals": {//定义全局的变量
-    "React": true,
-    "ReactDOM": true
+    "android": true
   },
   "extends": [//配置不检测的js文件
 
