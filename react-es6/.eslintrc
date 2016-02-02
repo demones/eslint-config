@@ -78,7 +78,7 @@
     "no-octal-escape": 2,//不允许使用八进制转义字符串
     "no-octal": 2,//不允许使用八进制数字
     "no-param-reassign": 0,//如果开启，则不允许重新修改函数参数值，或者参数属性值
-    "no-process-env": 2,//在node环境中，不建议使用 process.envn
+    //"no-process-env": 2,//在node环境中，不建议使用 process.envn
     "no-proto": 2,//不建议使用该属性 __proto__
     "no-redeclare": 2,//不允许重复声明同一个变量
     "no-return-assign": 2,//不允许在return语句中有赋值语句
@@ -125,8 +125,8 @@
     "no-sync": 2,//我们尽量使用异步方法来代替同步方法
 
     // Stylistic
-    "array-bracket-spacing": 2,//数组元素见加一空格，但前后不能有空格，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
-    "block-spacing": 2,//花括号与语句见应该有空格
+    //"array-bracket-spacing": 2,//数组元素见加一空格，但前后不能有空格，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
+    "block-spacing": 2,//花括号与语句间应该有空格
     "brace-style": 2,//条件或循环语句中，花括号是另起一行，还是与当前语句在同一行，默认跟当前语句在同一行
     "camelcase": 2,//驼峰式命名变量或属性
     "comma-spacing": 2,//逗号表达式前后空格情况，默认前面没有，后边应该添加
@@ -161,7 +161,7 @@
     //"no-trailing-spaces": 2,//不允许行尾有空白字符
     "no-underscore-dangle": 0,//是否允许变量名前后有 _
     "no-unneeded-ternary": 2,//请不要使用不必要的三元表达式，比如 var isYes = answer === 1 ? true : false;
-    "object-curly-spacing": 2,//验证花括号内的空格
+    //"object-curly-spacing": 2,//验证花括号内的空格
     "one-var": 0,//多个变量声明是否用一个var语句
     "operator-assignment": 2,//对于赋值表达式，应该使用其简略式写法，比如  x = x + y 应该用 x += y
     "operator-linebreak": 0,//有操作符时，是否检测打断的行
@@ -184,7 +184,7 @@
     "wrap-regex": 0,//字面正则表达式需要用括号括起来
 
     // es6
-    "arrow-parens": 2,//对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
+    //"arrow-parens": 2,//对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
     "arrow-spacing": 2,//箭头函数中，箭头运算符前后需要添加空白
     "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
     "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
@@ -213,7 +213,6 @@
     "react/jsx-no-duplicate-props": 1,//给jsx设置同名的属性会警告
     //"react/jsx-no-literals": 1,//不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
     "react/jsx-no-undef": 1,//检测定义了jsx component 而没有被调用
-    "react/jsx-quotes": [1, "double"],//检测属性值是单引号还是双引号
     //"react/jsx-sort-prop-types": 1,//检测propTypes属性值是否应该按字母排序定义
     //"react/jsx-sort-props": 1,//检测属性值是否按字符排序
     "react/jsx-uses-react": 1,//React声明了而没有被调用
@@ -267,8 +266,7 @@
     "experimentalObjectRestSpread": true
   },
   "globals": {//定义全局的变量
-    "android": true,
-    "layer": true
+    "android": true
   },
   "extends": [//配置不检测的js文件
 
