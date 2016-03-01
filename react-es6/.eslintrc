@@ -42,7 +42,7 @@
     "accessor-pairs": 2,//定义对象属性时，setter和getter应该成对出现，如果不是成对的，会出现警告信息的
     "block-scoped-var": 2,//在快作用于中不允许使用var来定义变量
     "complexity": 0,//判断语句复杂度，关闭该规则
-    "consistent-return": 2,//不同的分支返回的类型应该一样
+    //"consistent-return": 2,//不同的分支返回的类型应该一样
     "curly": [2, "multi-line"],//在循环或判断语句中是否需要加花括号
     "default-case": 2,//在 switch语句中，检测是否有默认分支
     "dot-location": 0,//在换行时，用来检测对象的点是换行之前还是之后，我们关闭该规则
@@ -53,7 +53,7 @@
     "no-caller": 2,//不允许用 arguments.caller 和 arguments.callee
     "no-div-regex": 2,//消除除法运算符迷惑用户使用 例如 return /=foo/; 应该写成 return /\=foo/;
     "no-else-return": 2,//如果在if语句中有return，则在else中可以不用return，可以放到最外面返回
-    "no-empty-label": 2,//不允许使用 label 语句
+    // "no-empty-label": 2,//不允许使用 label 语句，已删除，用 no-labels替代
     "no-empty-pattern": 2,//不允许空的解构赋值，例如 var {a: {}} = foo;
     //"no-eq-null": 2,//对于null比较也应该使用 === 来比较
     "no-eval": 2,//不允许使用 eval()
@@ -65,7 +65,7 @@
     "no-implied-eval": 2,//不要使用隐式调用eval的语句，比如 setInterval("alert('Hi!');", 100);
     "no-invalid-this": 0,//用来检测 this 关键字使用的地方是否正确，我们可以设置关闭该规则
     "no-iterator": 2,//在ES6中有__iterator__属性，建议不要修改该属性值
-    "no-labels": 2,//不建议使用标签表达式
+    "no-labels": 2,//不建议使用 label 表达式
     "no-lone-blocks": 2,//禁止内部不必要的嵌套块
     "no-loop-func": 2,//不要在循环中定义函数，并且该函数中调用了循环变量
     //"no-magic-numbers": 2,//一些系数最好定义为常量
@@ -105,14 +105,14 @@
     "no-shadow-restricted-names": 2,//不要使用 NaN, Infinity, undefined 等内部定义的变量来声明变量
     "no-shadow": 0,//全局和局部变量名不要用相同的名称
     "no-undef-init": 2,//定义变量的时候，如果没有合适的赋值，不用显式设置 undefined ，因为默认声明而未赋值的变量，其默认值为 undefined
-    "no-undef": 2,//不要使用还没有定义的变量或函数，如果引用第三方定义的变量，可以用 /*global */ 来标注，例如 /*global require define:true*/
+    "no-undef": 1,//不要使用还没有定义的变量或函数，如果引用第三方定义的变量，可以用 /*global */ 来标注，例如 /*global require define:true*/
     "no-undefined": 0,//代码中不建议使用 undefined ，包括命令和赋值等
     /**
     定义了，但没有使用该变量，vars 有两种选择 all 和 local；args 有三种选择，all after-used 和 none
     我们可以只检测变量而不检测函数参数，可以把 args 设为 none
     **/
-    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
-    "no-use-before-define": [2, "nofunc"],//变量和函数的声明需要在使用之前，可以设置 [2, "nofunc"]，只检测变量，而不检测函数
+    "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+    //"no-use-before-define": [2, "nofunc"],//变量和函数的声明需要在使用之前，可以设置 [2, "nofunc"]，只检测变量，而不检测函数
 
     //Node.js and CommonJS
     //"callback-return": 2,//调用callback时需要加上return语句
@@ -126,8 +126,8 @@
 
     // Stylistic
     //"array-bracket-spacing": 2,//数组元素见加一空格，但前后不能有空格，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
-    "block-spacing": 2,//花括号与语句间应该有空格
-    "brace-style": 2,//条件或循环语句中，花括号是另起一行，还是与当前语句在同一行，默认跟当前语句在同一行
+    //"block-spacing": 2,//花括号与语句间应该有空格
+    //"brace-style": 2,//条件或循环语句中，花括号是另起一行，还是与当前语句在同一行，默认跟当前语句在同一行
     "camelcase": 2,//驼峰式命名变量或属性
     "comma-spacing": 2,//逗号表达式前后空格情况，默认前面没有，后边应该添加
     "comma-style": 2,//当换行时，逗号是在当前行还是下一行，默认是当前行
@@ -143,7 +143,7 @@
     "key-spacing": 2,//键值之间的空格
     "linebreak-style": 0,//验证 unix (LF) or windows (CRLF)
     "lines-around-comment": 0,//注释的规范写法
-    "new-cap": 2,//构造函数首字母应该大写
+    //"new-cap": 2,//构造函数首字母应该大写
     "new-parens": 2,//实例化构造函数时，需要加入()，即使没有参数值，所以比如 new Person 是不允许的
     "newline-after-var": 0,//用var声明多个变量时，是否允许换行
     "no-array-constructor": 2,//不允许使用 new Array(0, 1, 2) 来创建数组，而改用 []
@@ -170,15 +170,15 @@
     "quotes": [2, "single"],//字符串引号，建议使用单引号
     "require-jsdoc": 0,//是否需要 jsdoc 来注释代码
     "semi-spacing": 0,//分号与代码之间的间隔
-    "semi": [2, "always"],//总是要求加上分号
+    //"semi": [2, "always"],//总是要求加上分号
     "sort-vars": 0,//定义多个变量时，是否按字符顺序来排序，不建议开启该规则
-    "space-after-keywords": 2,//关键字 if, else, for, while, do, switch, try, catch, finally, and with 要求有空格
+    "keyword-spacing": 2,//关键字 if, else, for, while, do, switch, try, catch, finally, and with 要求有空格
     "space-before-blocks": 2,//在每一块后面需要添加一空格
     "space-before-function-paren": 0,//在函数名和() 之间有一空格
     "space-before-keywords": 0,//在关键字之前添加空白
     "space-in-parens": 2,//括号和参数之间应该没有空格
     "space-infix-ops": 2,//表达式中间应该添加空白
-    "space-return-throw-case": 2,//在return, throw, and case 后添加空白
+    // "space-return-throw-case": 2,//在return, throw, and case 后添加空白，已被删除，用 keyword-spacing 替换
     "space-unary-ops": 2,//在一元操作符前或后不应该有空白
     "spaced-comment": 0,//如果开启，则会检测注释符后是否有空白，always必须有，而never则没有
     "wrap-regex": 0,//字面正则表达式需要用括号括起来
@@ -232,7 +232,7 @@
     "react/sort-comp": 1,//组件方法是否应该按 lifecycle methods 排序书写，详细查看这里 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
     "react/wrap-multilines": 1//对于当行 jsx 书写应该用括号括起来
   },
-  //"parser": "esprima",//指定默认解析器
+  "parser": "babel-eslint",//指定默认解析器
   "env": {
     "es6": true,
     "node": true,
