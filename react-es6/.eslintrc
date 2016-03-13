@@ -52,7 +52,7 @@
     "guard-for-in": 2,//在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     //"no-alert": 2,//不允许用alert语句
     "no-caller": 2,//不允许用 arguments.caller 和 arguments.callee
-    "no-case-declarations": 2,//不要在 case 语句中使用声明式语句
+    //"no-case-declarations": 2,//不要在 case 语句中使用声明式语句
     "no-div-regex": 2,//消除除法运算符迷惑用户使用 例如 return /=foo/; 应该写成 return /\=foo/;
     "no-else-return": 2,//如果在if语句中有return，则在else中可以不用return，可以放到最外面返回
     //"no-empty-function": 2, //不要定义空函数
@@ -156,7 +156,7 @@
     "max-len": [2, 120, 2, {"ignoreUrls": true}], //限定每行最大长度
     "max-nested-callbacks": [2, 3], // 限定回调函数最大深度
     "max-params": [2, 3], //限定函数参数最大个数
-    "max-statements": [2, 10, {"ignoreTopLevelFunctions": true}],// 在一个函数中限定声明表达式最多个数,内部函数会或略
+    "max-statements": [2, 30, {"ignoreTopLevelFunctions": true}],// 在一个函数中限定声明表达式最多个数,内部函数会或略
     //"new-cap": 2,//构造函数首字母应该大写
     "new-parens": 2,//实例化构造函数时，需要加入()，即使没有参数值，所以比如 new Person 是不允许的
     "newline-after-var": 0,//用var声明多个变量时，是否允许换行
@@ -205,7 +205,7 @@
     "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
     "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
     "no-class-assign": 2,//不能再修改已经声明的类，即不能重现给已经声明的类赋其他值
-    "no-confusing-arrow": 2, //箭头函数中不建议使用引起疑惑的表达式,比如 var x = a => 1 ? 2 : 3
+    //"no-confusing-arrow": 2, //箭头函数中不建议使用引起疑惑的表达式,比如 var x = a => 1 ? 2 : 3
     "no-const-assign": 2,//不能修改常量值
     "no-dupe-class-members": 2,//类成员不能重复定义
     "no-new-symbol": 2, //对于 Symbol,不要使用 new,例如 var foo = new Symbol("foo");
