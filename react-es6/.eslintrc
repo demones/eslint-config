@@ -52,7 +52,7 @@
     "guard-for-in": 2,//在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     //"no-alert": 2,//不允许用alert语句
     "no-caller": 2,//不允许用 arguments.caller 和 arguments.callee
-    //"no-case-declarations": 2,//不要在 case 语句中使用声明式语句
+    "no-case-declarations": 2,//在 case 语句中使用声明式语句时，需要用 {} 括起来
     "no-div-regex": 2,//消除除法运算符迷惑用户使用 例如 return /=foo/; 应该写成 return /\=foo/;
     "no-else-return": 2,//如果在if语句中有return，则在else中可以不用return，可以放到最外面返回
     //"no-empty-function": 2, //不要定义空函数
@@ -132,7 +132,7 @@
     "no-sync": 2,//我们尽量使用异步方法来代替同步方法
 
     // Stylistic
-    //"array-bracket-spacing": 2,//数组元素见加一空格，但前后不能有空格，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
+    //"array-bracket-spacing": 2,//数组元素前加一空格，但前后不能有空格，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
     //"block-spacing": 2,//花括号与语句间应该有空格
     //"brace-style": 2,//条件或循环语句中，花括号是另起一行，还是与当前语句在同一行，默认跟当前语句在同一行
     "camelcase": 2,//驼峰式命名变量或属性
@@ -153,9 +153,9 @@
     "linebreak-style": 0,//验证 unix (LF) or windows (CRLF)
     "lines-around-comment": 0,//注释的规范写法
     "max-depth": [2, 10],//限制语句块最大嵌套深度
-    "max-len": [2, 120, 2, {"ignoreUrls": true}], //限定每行最大长度
+    "max-len": [2, 200, 2, {"ignoreUrls": true}], //限定每行最大长度
     "max-nested-callbacks": [2, 3], // 限定回调函数最大深度
-    "max-params": [2, 3], //限定函数参数最大个数
+    "max-params": [2, 4], //限定函数参数最大个数
     "max-statements": [2, 30, {"ignoreTopLevelFunctions": true}],// 在一个函数中限定声明表达式最多个数,内部函数会或略
     //"new-cap": 2,//构造函数首字母应该大写
     "new-parens": 2,//实例化构造函数时，需要加入()，即使没有参数值，所以比如 new Person 是不允许的
@@ -205,7 +205,7 @@
     "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
     "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
     "no-class-assign": 2,//不能再修改已经声明的类，即不能重现给已经声明的类赋其他值
-    //"no-confusing-arrow": 2, //箭头函数中不建议使用引起疑惑的表达式,比如 var x = a => 1 ? 2 : 3
+    "no-confusing-arrow": 2, //箭头函数中不建议使用引起疑惑的表达式，比如 var x = a => 1 ? 2 : 3，如果使用需要用{} 括起来
     "no-const-assign": 2,//不能修改常量值
     "no-dupe-class-members": 2,//类成员不能重复定义
     "no-new-symbol": 2, //对于 Symbol,不要使用 new,例如 var foo = new Symbol("foo");
@@ -223,48 +223,52 @@
     "yield-star-spacing": [2, {"before": true, "after": false}], // yield * 号前后是否需要空格
 
 
-    //react rules，默认设置为警告 https://github.com/yannickcr/eslint-plugin-react
+    //react rules，默认设置为报错 https://github.com/yannickcr/eslint-plugin-react
 
-    //"react/display-name": 1,//是否检测需要为React Component 设置一个 displayName
-    //"react/forbid-prop-types": 1,//是否检测使用了React.PropTypes.any React.PropTypes.array 或 React.PropTypes.object，如果开启该规则，则不允许使用React.PropTypes 指定的类型，而用具体的类型来说明，默认该规则是关闭的
-    "react/no-danger": 1,//不要使用不安全的名称来定义属性，比如 dangerouslySetInnerHTML  __html，看 https://facebook.github.io/react/tips/dangerously-set-inner-html.html
-    "react/no-deprecated": 1, //建议不要使用不赞成的方法,比如 React.render(<MyComponent />, root); React.unmountComponentAtNode(root);
-    "react/no-did-mount-set-state": 1,//在componentDidMount 中不要使用 setState 方法
-    "react/no-direct-mutation-state": 1,//不要直接使用 this.state 来改变值，而应该用 this.setState
-    "react/no-is-mounted": 1, //不建议使用方法 this.isMounted()
-    "react/no-multi-comp": [1, { "ignoreStateless": true }],// 不建议在一个文件中定义多个组件,但无状态的组件被或略
-    //"react/no-set-state": 1, //在 Flux 或 redux 中是使用 store 维持 state 的,在这些框架中可以不使用 state
-    //"react/no-string-refs": 1, //不建议使用字符串的 ref 而应该使用变量
-    "react/no-unknown-property": 1,//不要使用扁平或不接受的属性名称，比如class，而用className，属性名应该是驼峰式命名
-    "react/prefer-es6-class": 1, //应该使用 es6 来创建 class
-    //"react/prefer-stateless-function": 1, // 对于无状态的组件尽量使用函数来声明组件,比如 const Foo = function(props) {return <div>{props.foo}</div>;};
-    "react/prop-types": 1, //对于没有设置 propType 的 prop 给出警告
-    "react/react-in-jsx-scope": 1, //对于使用了 JSX,要使用 React 组件
-    "react/require-extension": 1, //引入的 js 或 jsx 文件是否去掉后缀
-    "react/self-closing-comp": 1, //对于没有子元素的组件应该是这样的 <Hello name="John" /> 而不应该 <Hello name="John"></Hello>
-    "react/sort-comp": 1, //组件方法是否按一定的顺序书写,默认为: 1  static methods and properties 2 lifecycle methods: displayName, propTypes, contextTypes, childContextTypes, mixins, statics,defaultProps, constructor, getDefaultProps, getInitialState, state, getChildContext, componentWillMount, componentDidMount, componentWillReceiveProps, shouldComponentUpdate, componentWillUpdate, componentDidUpdate, componentWillUnmount (in this order).  3 custom methods 4 render method
-    //"react/sort-prop-types": 1, //propType 是否按字母顺序来排列
-    "react/wrap-multilines": 1, // 对于多行 jsx, 应该用()包裹一下
+    //"react/display-name": 2,//是否检测需要为React Component 设置一个 displayName
+    //"react/forbid-prop-types": 2,//是否检测使用了React.PropTypes.any React.PropTypes.array 或 React.PropTypes.object，如果开启该规则，则不允许使用React.PropTypes 指定的类型，而用具体的类型来说明，默认该规则是关闭的
+    "react/no-danger": 2,//不要使用不安全的名称来定义属性，比如 dangerouslySetInnerHTML  __html，看 https://facebook.github.io/react/tips/dangerously-set-inner-html.html
+    "react/no-deprecated": 2, //建议不要使用不赞成的方法,比如 React.render(<MyComponent />, root); React.unmountComponentAtNode(root);
+    "react/no-did-mount-set-state": 2,//在componentDidMount 中不要使用 setState 方法
+    "react/no-direct-mutation-state": 2,//不要直接使用 this.state 来改变值，而应该用 this.setState
+    "react/no-is-mounted": 2, //不建议使用方法 this.isMounted()
+    "react/no-multi-comp": [2, { "ignoreStateless": true }],// 不建议在一个文件中定义多个组件,但无状态的组件被或略
+    //"react/no-set-state": 2, //在 Flux 或 redux 中是使用 store 维持 state 的,在这些框架中可以不使用 state
+    //"react/no-string-refs": 2, //不建议使用字符串的 ref 而应该使用变量
+    "react/no-unknown-property": 2,//不要使用扁平或不接受的属性名称，比如class，而用className，属性名应该是驼峰式命名
+    "react/prefer-es6-class": 2, //应该使用 es6 来创建 class
+    //"react/prefer-stateless-function": 2, // 对于无状态的组件尽量使用函数来声明组件,比如 const Foo = function(props) {return <div>{props.foo}</div>;};
+    "react/prop-types": 2, //对于没有设置 propType 的 prop 给出警告
+    "react/react-in-jsx-scope": 2, //对于使用了 JSX,要使用 React 组件
+    "react/require-extension": 2, //引入的 js 或 jsx 文件是否去掉后缀
+    "react/self-closing-comp": 2, //对于没有子元素的组件应该是这样的 <Hello name="John" /> 而不应该 <Hello name="John"></Hello>
+    "react/sort-comp": 2, //组件方法是否按一定的顺序书写,默认为: 1  static methods and properties 2 lifecycle methods: displayName, propTypes, contextTypes, childContextTypes, mixins, statics,defaultProps, constructor, getDefaultProps, getInitialState, state, getChildContext, componentWillMount, componentDidMount, componentWillReceiveProps, shouldComponentUpdate, componentWillUpdate, componentDidUpdate, componentWillUnmount (in this order).  3 custom methods 4 render method
+    //"react/sort-prop-types": 2, //propType 是否按字母顺序来排列
+    "react/wrap-multilines": 2, // 对于多行 jsx, 应该用()包裹一下
 
     // JSX-specific rules 以下为 jsx 规则
-    "react/jsx-boolean-value": 1,//该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
-    //"react/jsx-closing-bracket-location": 1,//检测jsx tag 闭合书写规范
-    "react/jsx-curly-spacing": 1,//检测赋值是否有空格，默认是不应该有空格的，但换行不检测，比如 <Hello name={firstname } />;
-    //"react/jsx-equals-spacing": [1, "always"], //再给属性赋值时,是否在 = 前后加上空格
-    //"react/jsx-handler-names": 1, //按照惯例,事件方法名前是否加上 handle
-    //"react/jsx-indent-props": [1, 2],//jsx语法换行缩进几个空格（或制表符）
-    //"react/jsx-indent": [1, 2], //jsx 嵌套包裹缩进,默认用2个
-    "react/jsx-key": 1, //在循环中,组件应该设置不同的 key
-    //"react/jsx-max-props-per-line": 1,//jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
-    //"react/jsx-no-bind": 1,//不必要的地方不使用bind
-    "react/jsx-no-duplicate-props": 1,//给jsx设置同名的属性会警告
-    //"react/jsx-no-literals": 1,//不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
-    "react/jsx-no-undef": 1,//检测定义了jsx component 而没有被调用
-    "react/jsx-pascal-case": 1, // 应该使用 pascal 来命名组件名
-    //"react/jsx-sort-props": 1, // 属性名是否按字母排序
-    //"react/jsx-space-before-closing": 1, // 在关闭标签前是否加一空格
-    "react/jsx-uses-react": 1,//React声明了而没有被调用
-    "react/jsx-uses-vars": 1//jsx组件被定义而没有被调用
+    "react/jsx-boolean-value": 2,//该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
+    //"react/jsx-closing-bracket-location": 2,//检测jsx tag 闭合书写规范
+    "react/jsx-curly-spacing": 2,//检测赋值是否有空格，默认是不应该有空格的，但换行不检测，比如 <Hello name={firstname } />;
+    //"react/jsx-equals-spacing": [2, "always"], //再给属性赋值时,是否在 = 前后加上空格
+    //"react/jsx-handler-names": 2, //按照惯例,事件方法名前是否加上 handle
+    //"react/jsx-indent-props": [2, 2],//jsx语法换行缩进几个空格（或制表符）
+    //"react/jsx-indent": [2, 2], //jsx 嵌套包裹缩进,默认用2个
+    "react/jsx-key": 2, //在循环中,组件应该设置不同的 key
+    //"react/jsx-max-props-per-line": 2,//jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
+    //"react/jsx-no-bind": 2,//不必要的地方不使用bind
+    "react/jsx-no-duplicate-props": 2,//给jsx设置同名的属性会警告
+    //"react/jsx-no-literals": 2,//不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
+    "react/jsx-no-undef": 2,//检测定义了jsx component 而没有被调用
+    "react/jsx-pascal-case": 2, // 应该使用 pascal 来命名组件名
+    //"react/jsx-sort-props": 2, // 属性名是否按字母排序
+    //"react/jsx-space-before-closing": 2, // 在关闭标签前是否加一空格
+    "react/jsx-uses-react": 2,//React声明了而没有被调用
+    "react/jsx-uses-vars": 2 //jsx组件被定义而没有被调用
+
+    // eslint-plugin-flow-vars
+    //"flow-vars/define-flow-type": 2,
+    //"flow-vars/use-flow-type": 2
   },
   "parser": "babel-eslint",//指定默认解析器
   "env": {
@@ -309,6 +313,7 @@
 
   ],
   "plugins": [//定义第三方插件
+    //"flow-vars",
     "react"
   ],
   "settings": {//设置
