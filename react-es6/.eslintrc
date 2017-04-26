@@ -319,8 +319,8 @@
     "react/no-is-mounted": 2, // 不建议使用方法 this.isMounted()
     "react/no-multi-comp": [2, { "ignoreStateless": true }], // 不建议在一个文件中定义多个组件,但无状态的组件被或略
     "react/no-render-return-value": 2, // 使用ReactDOM.render()不应该有返回值
-    "react/no-set-state": 2, // 在 Flux 或 redux 中是使用 store 维持 state 的,在这些框架中可以不使用 state
-    "react/no-string-refs": 2, // 不建议使用字符串的 ref 而应该使用变量
+    "react/no-set-state": 0, // 在 Flux 或 redux 中是使用 store 维持 state 的,在这些框架中可以不使用 state
+    "react/no-string-refs": 0, // 不建议使用字符串的 ref 而应该使用变量
     "react/no-unescaped-entities": 2, // 不要出现没有转义的字符直接量
     "react/no-unknown-property": 2, // 不要使用扁平或不接受的属性名称，比如class，而用className，属性名应该是驼峰式命名
     "react/no-unused-prop-types": 2, // 声明了 props 而没有被使用
@@ -328,12 +328,12 @@
     "react/prefer-stateless-function": 2, // 对于无状态的组件尽量使用函数来声明组件,比如 const Foo = function(props) {return <div>{props.foo}</div>;};
     "react/prop-types": 2, // 对于没有设置 propType 的 prop 给出警告
     "react/react-in-jsx-scope": 2, // 对于使用了 JSX,要使用 React 组件
-    "react/require-default-props": 2,  // 对于每个 prop ，是否需要设置一下其 defaultProps 值
-    "react/require-optimization": 2, // 检测每个组件是否有 shouldComponentUpdate 方法
+    "react/require-default-props": 0,  // 对于每个 prop ，是否需要设置一下其 defaultProps 值
+    "react/require-optimization": 0, // 检测每个组件是否有 shouldComponentUpdate 方法
     "react/require-render-return": 2, // render 方法中需要 return
     "react/self-closing-comp": 0, // 对于没有子元素的组件应该是这样的 <Hello name="John" /> 而不应该 <Hello name="John"></Hello>
     "react/sort-comp": 2, // 组件方法是否按一定的顺序书写,默认为: 1  static methods and properties 2 lifecycle methods: displayName, propTypes, contextTypes, childContextTypes, mixins, statics,defaultProps, constructor, getDefaultProps, getInitialState, state, getChildContext, componentWillMount, componentDidMount, componentWillReceiveProps, shouldComponentUpdate, componentWillUpdate, componentDidUpdate, componentWillUnmount (in this order).  3 custom methods 4 render method
-    "react/sort-prop-types": 2, // propType 是否按字母顺序来排列
+    "react/sort-prop-types": 0, // propType 是否按字母顺序来排列
     "react/style-prop-object": 2, // style 必须是对象
     "react/void-dom-elements-no-children": 2, // 不要给没有子节点的 dom 标签设置 childern 内容，比如 <br>Children</br>  <br children='Children' />, 这些都是错误的写法
 
@@ -341,33 +341,33 @@
     "react/jsx-boolean-value": 2, // 该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
     "react/jsx-closing-bracket-location": 2, // 检测jsx tag 闭合书写规范
     "react/jsx-curly-spacing": 2, // 检测赋值是否有空格，默认是不应该有空格的，但换行不检测，比如 <Hello name={firstname } />;
-    "react/jsx-equals-spacing": [2, "always"], // 再给属性赋值时,是否在 = 前后加上空格
-    "react/jsx-filename-extension": 2, // 后缀名，是否必须是 jsx
+    "react/jsx-equals-spacing": [2, "never"], // 再给属性赋值时,是否在 = 前后加上空格
+    "react/jsx-filename-extension": 0, // 后缀名，是否必须是 jsx
     "react/jsx-first-prop-new-line": 2, // 第一个属性名是否在新的一行书写
     "react/jsx-handler-names": 2, // 按照惯例,事件方法名前是否加上 handle
     "react/jsx-indent": [2, 2], // jsx 嵌套包裹缩进,默认用2个
     "react/jsx-indent-props": [2, 2],// jsx语法换行缩进几个空格（或制表符）
     "react/jsx-key": 2, // 在循环中,组件应该设置不同的 key
-    "react/jsx-max-props-per-line": 2, // jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
-    "react/jsx-no-bind": 2,//不必要的地方不使用bind
-    "react/jsx-no-comment-textnodes": 2, //检测注释的正确性
-    "react/jsx-no-duplicate-props": 2,//给jsx设置同名的属性会警告
-    "react/jsx-no-literals": 2,// 不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
+    "react/jsx-max-props-per-line": 0, // jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
+    "react/jsx-no-bind": 2, // 不必要的地方不使用bind
+    "react/jsx-no-comment-textnodes": 2, // 检测注释的正确性
+    "react/jsx-no-duplicate-props": 2, // 给jsx设置同名的属性会警告
+    "react/jsx-no-literals": 0, // 不要设置字面的值，比如 var Hello = <div>test</div>; 而用 var Hello = <div>{'test'}</div>;
     "react/jsx-no-target-blank": 0,
-    "react/jsx-no-undef": 2,//检测定义了jsx component 而没有被调用
+    "react/jsx-no-undef": 2, // 检测定义了jsx component 而没有被调用
     "react/jsx-pascal-case": 2, // 应该使用 pascal 来命名组件名
-    "react/jsx-sort-props": 2, // 属性名是否按字母排序
-    "react/jsx-space-before-closing": 2, // 在关闭标签前是否加一空格
-    "react/jsx-tag-spacing": 2, //
-    "react/jsx-uses-react": 2,//React声明了而没有被调用
-    "react/jsx-uses-vars": 2, //jsx组件被定义而没有被调用
-    "react/jsx-wrap-multilines": 2 //多行 jsx 表达式应该用 () 包裹起来
+    "react/jsx-sort-props": 0, // 属性名是否按字母排序
+    "react/jsx-space-before-closing": 0, // 在关闭标签前是否加一空格
+    "react/jsx-tag-spacing": 0, // 检测标签空格
+    "react/jsx-uses-react": 2,// React声明了而没有被调用
+    "react/jsx-uses-vars": 2, // jsx组件被定义而没有被调用
+    "react/jsx-wrap-multilines": 2 // 多行 jsx 表达式应该用 () 包裹起来
 
     // eslint-plugin-flow-vars rule
     //"flowtype/boolean-style": 2,
     //"flowtype/define-flow-type": 2
   },
-  "parser": "babel-eslint",//指定默认解析器
+  "parser": "babel-eslint", // 指定默认解析器
   "env": {
     "es6": true,
     "node": true,
@@ -394,7 +394,7 @@
     "react": {
       "createClass": "createReactClass", // Regex for Component Factory to use, default to "createReactClass"
       "pragma": "React",  // Pragma to use, default to "React"
-      "version": "15.5.0" // React version, default to the latest React stable release
+      "version": "15.5.4" // React version, default to the latest React stable release
     },
     "sharedData": "sharedName"
   },
