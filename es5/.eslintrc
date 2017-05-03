@@ -54,11 +54,11 @@
     "class-methods-use-this": 0, //在 class 定义的方法中，没有使用 this，会认为是不应该的
     "complexity": 2, // 判断语句复杂度，关闭该规则
     "consistent-return": 0, // 不同的分支返回的类型应该一样
-    "curly": [0, "multi-line"], // 在循环或判断语句中是否需要加花括号
+    "curly": [2, "multi-line"], // 在循环或判断语句中是否需要加花括号
     "default-case": 2, // 在 switch语句中，检测是否有默认分支
     "dot-location": [2, "property"], // 在换行时，用来检测对象的点是换行之前还是之后，这里设为放在下一行
     "dot-notation": 2, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
-    "eqeqeq": [0, "allow-null"], // 使用恒等来比较两个变量
+    "eqeqeq": [2, "allow-null"], // 使用恒等来比较两个变量
     "guard-for-in": 2, // 在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     "no-alert": 2, // 不允许用alert语句
     "no-caller": 2, // 不允许用 arguments.caller 和 arguments.callee
@@ -169,7 +169,7 @@
     "array-bracket-spacing": 2, // 数组元素前后是否要加一空格，默认为不必要加，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
     "block-spacing": 2, // 花括号与语句间应该有空格
     "brace-style": 2, // 条件或循环语句中，花括号是另起一行，还是与当前语句在同一行，默认跟当前语句在同一行
-    "camelcase": 0, // 驼峰式命名变量或属性
+    "camelcase": 2, // 驼峰式命名变量或属性
     "capitalized-comments": 0, // 注释的大小写格式限制
     "comma-dangle": 0, // 对象最后一个属性，是否需要逗号
     "comma-spacing": 2, // 逗号表达式前后空格情况，默认前面没有，后边应该添加

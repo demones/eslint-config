@@ -244,7 +244,7 @@
     "require-jsdoc": 0, // 是否需要 jsdoc 来注释代码
     "semi": [0, "always"], // 总是要求加上分号
     "semi-spacing": 2, // 分号与代码之间的间隔
-    "sort-keys": 0,
+    "sort-keys": 0, // 属性是否需要排序
     "sort-vars": 0, // 定义多个变量时，是否按字符顺序来排序，不建议开启该规则
     "space-before-blocks": 2, // 在每一块后面需要添加一空格
     "space-before-function-paren": 0, // 在函数名和() 之间有一空格
@@ -308,7 +308,7 @@
     "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 7,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true // enable JSX
