@@ -1,11 +1,10 @@
 /**
-"off" or 0 - turn the rule off
-"warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
-"error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
-**/
-{
+ "off" or 0 - turn the rule off
+ "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
+ "error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
+ **/
+module.exports = {
   "rules": {
-    // Possible Errors
     "no-await-in-loop": 2, // Disallow await inside of loops
     "no-compare-neg-zero": 2, // 不要出现负零，即 -0
     "no-cond-assign": 2, // 条件语句中，不应该出现 = ，比如 if (x = 2) {  } 是会报错的
@@ -19,13 +18,13 @@
     "no-empty": 2, // 是否允许空的表达式，if (foo) {}
     "no-empty-character-class": 2, // 是否允许空的正则表达式，比如 var foo = /^abc[]/;
     /**
-    异常时给ex赋值是不允许的
-    try {
+     异常时给ex赋值是不允许的
+     try {
      // code
     } catch (e) {
         e = 12; //error Do not assign to the exception parameter.
     }
-    **/
+     **/
     "no-ex-assign": 2,
     "no-extra-boolean-cast": 2, // 在条件语句中不允许使用!!  比如 if (!!foo) {   }   /*error Redundant double negation in an if statement condition.*/
     "no-extra-parens": 0, // 不要使用冗余的括号，比如 a = (b * c);
@@ -86,7 +85,7 @@
     "no-magic-numbers": [0, { // 一些系数最好定义为常量
       "ignore": [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 16],
       "ignoreArrayIndexes": true
-      }
+    }
     ],
     "no-multi-spaces": [0, { // 表达式中是否允许有多余的空格
       "exceptions": {
@@ -94,8 +93,8 @@
         "ArrowFunctionExpression": true,
         "CallExpression": true,
         "VariableDeclarator": true
-        }
       }
+    }
     ],
     "no-multi-str": 2, // 是否允许多行字符串
     "no-new": 0, // 不允许实例化类，而没有赋给任何变量
@@ -147,9 +146,9 @@
     "no-undef-init": 2, // 定义变量的时候，如果没有合适的赋值，不用显式设置 undefined ，因为默认声明而未赋值的变量，其默认值为 undefined
     "no-undefined": 0, // 代码中不建议使用 undefined ，包括命令和赋值等
     /**
-    定义了，但没有使用该变量，vars 有两种选择 all 和 local；args 有三种选择，all after-used 和 none
-    我们可以只检测变量而不检测函数参数，可以把 args 设为 none
-    **/
+     定义了，但没有使用该变量，vars 有两种选择 all 和 local；args 有三种选择，all after-used 和 none
+     我们可以只检测变量而不检测函数参数，可以把 args 设为 none
+     **/
     "no-unused-vars": [0, {"vars": "all", "args": "none"}],
     "no-use-before-define": [0, "nofunc"], // 变量和函数的声明需要在使用之前，可以设置 [2, "nofunc"]，只检测变量，而不检测函数
 
@@ -160,10 +159,10 @@
     "no-mixed-requires": 2, // require与其他变量声明应该不要放在一起
     "no-new-require": 2, // 不用对表达式 require 直接使用 new,例如 var appHeader = new require('app-header');
     "no-path-concat": 2, // 不要使用 __dirname 或 __filename 与字符串连接生成路径，应该使用 path.join(__dirname, "foo.scripts"); 或 path.resolve(__dirname, "foo.scripts");
-    "no-process-env": 2, // 在node环境中，不建议使用 process.env ，而使用 config 来配置
-    "no-process-exit": 2, // 不要直接调用 process.exit();
+    "no-process-env": 0, // 在node环境中，不建议使用 process.env ，而使用 config 来配置
+    "no-process-exit": 0, // 不要直接调用 process.exit();
     "no-restricted-modules": 2, // 限制使用某些模块，比如 no-restricted-modules: [2, "fs"] ，不能使用fs模块
-    "no-sync": 2, // 我们尽量使用异步方法来代替同步方法，比如操作文件等，
+    "no-sync": 0, // 我们尽量使用异步方法来代替同步方法，比如操作文件等，
 
     // Stylistic Issues
     "array-bracket-spacing": 2, // 数组元素前后是否要加一空格，默认为不必要加，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
@@ -186,7 +185,9 @@
     "id-blacklist": 2, // 指定一些黑名单变量，这些变量不能出现在代码中，比如 "id-blacklist": [2, "data", "err", "e", "cb", "callback"],
     "id-length": 0, // 定义变量名或属性名的最小最大长度
     "id-match": 2, // 规范变量名或属性名的命名规范
-    "indent": [2, 2], // 缩进，我们采用2个空格来缩进
+    "indent": [0, 2, {"SwitchCase": 1},
+      { "VariableDeclarator": { "var": 2, "let": 2, "const": 3 }},
+    ], // 缩进，我们采用2个空格来缩进
     "jsx-quotes": 0, // jsx属性值应该用双引号
     "key-spacing": 2, // 键值之间的空格
     "keyword-spacing": 2, // 关键字 if, else, for, while, do, switch, try, catch, finally, and with 要求有空格
@@ -195,9 +196,7 @@
     "lines-around-directive": 2, // 不同的语句中间是否加一空行
     "max-depth": [2, 12], // 限制语句块最大嵌套深度
     "max-len": [ // 限定每行最大长度
-      2, 200, {
-
-      }
+      2, 200, {}
     ],
     "max-lines": [2, {"max": 800, "skipBlankLines": true, "skipComments": true}], // 指定每个文件最大行
     "max-nested-callbacks": [1, 3], // 限定回调函数最大深度
@@ -215,14 +214,14 @@
     "no-continue": 0, // 是否允许使用 continue语句
     "no-inline-comments": 0,// 注释是否允许在代码的后面，开启则不允许
     "no-lonely-if": 0, // 应该使用 else if ，而不要使用 else { if(){} }
-    "no-mixed-operators": 2, // 不要把多个操作符写在一起使用，最好用括号括起来
+    "no-mixed-operators": 0, // 不要把多个操作符写在一起使用，最好用括号括起来
     "no-mixed-spaces-and-tabs": 2, // 不允许空格和制表位混合使用
     "no-multi-assign": 0, // 不要连续赋值，比如 var a = b = c = 5;
     "no-multiple-empty-lines": 2, // 代码中不要出现太多空行，默认最多为2行
     "no-negated-condition": 0, // 是否允许使用否定表达式 if (!a)
     "no-nested-ternary": 2, // 是否允许使用嵌套的三元表达式
     "no-new-object": 2, // 实例化对象时，不要用 new Object(); 而用 {}
-    "no-plusplus": [0, {"allowForLoopAfterthoughts": true }], // 是否允许使用 ++ 或 --
+    "no-plusplus": [0, {"allowForLoopAfterthoughts": true}], // 是否允许使用 ++ 或 --
     "no-restricted-syntax": [2, "WithStatement"], // 可以指定不允许的语法
     "no-tabs": 2, // 是否允许使用制表符
     "no-ternary": 0, // 是否允许三元操作符
@@ -267,8 +266,8 @@
     "wrap-regex": 2, // 字面正则表达式需要用括号括起来
 
     // es6
-    "arrow-body-style": [2, "always"],// 箭头函数是否需要加上{}
-    "arrow-parens": 2,//对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
+    "arrow-body-style": [0, "always"],// 箭头函数是否需要加上{}
+    "arrow-parens": 0,// 对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
     "arrow-spacing": 2,//箭头函数中，箭头运算符前后需要添加空白
     "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
     "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
@@ -287,7 +286,11 @@
     "object-shorthand": 2,//利用简写法来定义对象属性，如 var foo = {x, y, z}; 表示 var foo = {x:x, y:y, z:z};
     "prefer-arrow-callback": 2,//建议使用箭头函数作为回调函数
     "prefer-const": 2,//能使用常量的地方尽量使用const
-    "prefer-destructuring": 2, // 尽量使用解构表达式，比如 const [foo] = array; 或 const {bar: foo} = object;
+    "prefer-destructuring": [2, {
+      "array": false,
+    }, {
+      "enforceForRenamedProperties": false
+    }], // 尽量使用解构表达式，比如 const [foo] = array; 或 const {bar: foo} = object;
     "prefer-numeric-literals": 2, // 不允许直接使用 parseInt 解析字面量变量，比如 parseInt("111110111", 2)，而 parseInt(foo); 是允许的
     "prefer-rest-params": 2, // 建议使用 rest (...args) 参数来代替 arguments
     "prefer-spread": 2,//不要使用apply，应该使用扩展操作符来调用 Math.max(...args);
@@ -303,9 +306,9 @@
     // react rules，默认设置为报错 https://github.com/yannickcr/eslint-plugin-react
 
     "react/display-name": 0, // 是否检测需要为React Component 设置一个 displayName
-    "react/forbid-component-props": 2, // 禁止某些在组件上的属性，比如 className 等
-    "react/forbid-elements": [2, {"forbid": [""] }], // 禁止使用某些标签
-    "react/forbid-prop-types": 2, // 是否检测使用了React.PropTypes.any React.PropTypes.array 或 React.PropTypes.object，如果开启该规则，则不允许使用React.PropTypes 指定的类型，而用具体的类型来说明，默认该规则是关闭的
+    "react/forbid-component-props": 0, // 禁止某些在组件上的属性，比如 className 等
+    "react/forbid-elements": [2, {"forbid": [""]}], // 禁止使用某些标签
+    "react/forbid-prop-types": 0, // 是否检测使用了React.PropTypes.any React.PropTypes.array 或 React.PropTypes.object，如果开启该规则，则不允许使用React.PropTypes 指定的类型，而用具体的类型来说明，默认该规则是关闭的
     "react/forbid-foreign-prop-types": 2, // 不要使用不相关的 PropTypes
     "react/no-array-index-key": 2, // 最好不用使用数组的 index 作为 key
     "react/no-children-prop": 2, // 不需要把 children 作为 prop 传递
@@ -317,7 +320,7 @@
     "react/no-direct-mutation-state": 2, // 不要直接使用 this.state 来改变值，而应该用 this.setState
     "react/no-find-dom-node": 2, // 不建议使用 findDOMNode，因为最终该方法会被废弃
     "react/no-is-mounted": 2, // 不建议使用方法 this.isMounted()
-    "react/no-multi-comp": [2, { "ignoreStateless": true }], // 不建议在一个文件中定义多个组件,但无状态的组件被或略
+    "react/no-multi-comp": [2, {"ignoreStateless": true}], // 不建议在一个文件中定义多个组件,但无状态的组件被或略
     "react/no-render-return-value": 2, // 使用ReactDOM.render()不应该有返回值
     "react/no-set-state": 0, // 在 Flux 或 redux 中是使用 store 维持 state 的,在这些框架中可以不使用 state
     "react/no-string-refs": 0, // 不建议使用字符串的 ref 而应该使用变量
@@ -339,14 +342,14 @@
 
     // JSX-specific rules 以下为 jsx 规则
     "react/jsx-boolean-value": 2, // 该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
-    "react/jsx-closing-bracket-location": 2, // 检测jsx tag 闭合书写规范
+    "react/jsx-closing-bracket-location": 0, // 检测jsx tag 闭合书写规范
     "react/jsx-curly-spacing": 2, // 检测赋值是否有空格，默认是不应该有空格的，但换行不检测，比如 <Hello name={firstname } />;
     "react/jsx-equals-spacing": [2, "never"], // 再给属性赋值时,是否在 = 前后加上空格
     "react/jsx-filename-extension": 0, // 后缀名，是否必须是 jsx
-    "react/jsx-first-prop-new-line": 2, // 第一个属性名是否在新的一行书写
-    "react/jsx-handler-names": 2, // 按照惯例,事件方法名前是否加上 handle
+    "react/jsx-first-prop-new-line": 0, // 第一个属性名是否在新的一行书写
+    "react/jsx-handler-names": 0, // 按照惯例,事件方法名前是否加上 handle
     "react/jsx-indent": [2, 2], // jsx 嵌套包裹缩进,默认用2个
-    "react/jsx-indent-props": [2, 2],// jsx语法换行缩进几个空格（或制表符）
+    "react/jsx-indent-props": [0, 2],// jsx语法换行缩进几个空格（或制表符）
     "react/jsx-key": 2, // 在循环中,组件应该设置不同的 key
     "react/jsx-max-props-per-line": 0, // jsx 每个属性应该写在单独一行（默认），也可以设置每行的个数
     "react/jsx-no-bind": 2, // 不必要的地方不使用bind
@@ -394,9 +397,9 @@
     "react": {
       "createClass": "createReactClass", // Regex for Component Factory to use, default to "createReactClass"
       "pragma": "React",  // Pragma to use, default to "React"
-      "version": "15.5.4" // React version, default to the latest React stable release
+      "version": "15.6.0" // React version, default to the latest React stable release
     },
     "sharedData": "sharedName"
   },
   "root": true // 设置他后，子的js文件找到该 eslint配置文件后，则不再向上查找其他eslint配置文件
-}
+};
