@@ -1,4 +1,3 @@
-# eslint-config
-This is a common config for the ESLint.
+# lint-config
 
-基于 eslint 3.19.0 配置
+This is a common config for the eslint, sass-lint etc.
