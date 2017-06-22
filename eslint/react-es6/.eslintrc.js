@@ -5,6 +5,10 @@
  **/
 module.exports = {
   "rules": {
+    // 检测 for loop 书写是否正确，以下写法都是错误的
+    // for (var i = 0; i < 10; i--) {}
+    // for (var i = 10; i >= 0; i++) {}
+    "for-direction": 2,
     "no-await-in-loop": 2, // Disallow await inside of loops
     "no-compare-neg-zero": 2, // 不要出现负零，即 -0
     "no-cond-assign": 2, // 条件语句中，不应该出现 = ，比如 if (x = 2) {  } 是会报错的
@@ -134,6 +138,9 @@ module.exports = {
     "wrap-iife": [2, "any"], // 立即执行函数是里面包裹还是外面包裹，默认是外面包裹，即 outside
     "yoda": 2, // 不允许使用 yoda 条件表达式，常量值在前的比较表达式，比如： if(1 === a){ }
 
+    // Strict Mode
+    "strict": 0,
+
     // Variables
     "init-declarations": 0, // 声明变量的时候赋值，还是在其他地方赋值，我们可以关闭该规则
     "no-catch-shadow": 2, // 在IE8或更早的浏览器中，在catch语句中引入的变量 e 会调用全局已定义的变量 e
@@ -156,6 +163,7 @@ module.exports = {
     "callback-return": 0, // 调用callback时需要加上return语句
     "global-require": 0, // require加载依赖应该放在代码最上边显示，比如 var fs = require("fs");
     "handle-callback-err": 2, // 如果回调函数中有错误变量（比如err），我们需要判断处理错误的情况
+    "no-buffer-constructor": 2, // 不建议使用 Buffer 构造函数，比如： new Buffer(5) 是错误的
     "no-mixed-requires": 2, // require与其他变量声明应该不要放在一起
     "no-new-require": 2, // 不用对表达式 require 直接使用 new,例如 var appHeader = new require('app-header');
     "no-path-concat": 2, // 不要使用 __dirname 或 __filename 与字符串连接生成路径，应该使用 path.join(__dirname, "foo.scripts"); 或 path.resolve(__dirname, "foo.scripts");
@@ -165,7 +173,9 @@ module.exports = {
     "no-sync": 0, // 我们尽量使用异步方法来代替同步方法，比如操作文件等，
 
     // Stylistic Issues
+    "array-bracket-newline": 2, // 数组最后一个 ] 是否换行，默认规则为，写在一行不需要，多行需要
     "array-bracket-spacing": 2, // 数组元素前后是否要加一空格，默认为不必要加，如 var arr = [ 'foo', 'bar' ];  是不正确的写法
+    "array-element-newline": 0, // 数组元素是写在一行，还是多行，该规则不用开启
     "block-spacing": 2, // 花括号与语句间应该有空格
     "brace-style": 2, // 条件或循环语句中，花括号是另起一行，还是与当前语句在同一行，默认跟当前语句在同一行
     "camelcase": 2, // 驼峰式命名变量或属性
@@ -186,14 +196,14 @@ module.exports = {
     "id-length": 0, // 定义变量名或属性名的最小最大长度
     "id-match": 2, // 规范变量名或属性名的命名规范
     "indent": [0, 2, {"SwitchCase": 1},
-      { "VariableDeclarator": { "var": 2, "let": 2, "const": 3 }},
+      {"VariableDeclarator": {"var": 2, "let": 2, "const": 3}},
     ], // 缩进，我们采用2个空格来缩进
     "jsx-quotes": 0, // jsx属性值应该用双引号
     "key-spacing": 2, // 键值之间的空格
     "keyword-spacing": 2, // 关键字 if, else, for, while, do, switch, try, catch, finally, and with 要求有空格
+    "line-comment-position": 0, // 注释是放在上面还是旁边，不需要开启该规则
     "linebreak-style": 0, // 验证 unix (LF) or windows (CRLF)
     "lines-around-comment": 0, // 注释的规范写法，在旁边或上方
-    "lines-around-directive": 2, // 不同的语句中间是否加一空行
     "max-depth": [2, 12], // 限制语句块最大嵌套深度
     "max-len": [ // 限定每行最大长度
       2, 200, {}
@@ -206,8 +216,6 @@ module.exports = {
     "multiline-ternary": 0, // 三元表达式，是否需要多行书写
     "new-cap": 0, // 构造函数首字母应该大写
     "new-parens": 2, // 实例化构造函数时，需要加入()，即使没有参数值，所以比如 new Person 是不允许的
-    "newline-after-var": 0, // 用var声明变量时，是否允许换行
-    "newline-before-return": 0,
     "newline-per-chained-call": 0,
     "no-array-constructor": 0, // 不允许使用 new Array(2, 1, 2) 来创建数组，而改用 []
     "no-bitwise": 0, // 禁止使用位运算符,包括以下情况 var x = y | z; var x = y & z; var x = y ^ z; var x = ~ z; var x = y << z; var x = y >> z; var x = y >>> z; x |= y; x &= y; x ^= y; x <<= y; x >>= y; x >>>= y;
@@ -238,11 +246,13 @@ module.exports = {
     "operator-assignment": 2, // 对于赋值表达式，应该使用其简略式写法，比如  x = x + y 应该用 x += y
     "operator-linebreak": 0, // 有操作符时，是否检测打断的行
     "padded-blocks": 0, // 是否验证空白块
+    "padding-line-between-statements": [2, {blankLine: "always", prev: "*", next: "return"}], // 不同的语句中间是否加一空行
     "quote-props": [2, "as-needed"], // 属性加单引号或双引号，个人建议不用加的最好不加
     "quotes": [2, "single"], // 字符串引号，建议使用单引号
     "require-jsdoc": 0, // 是否需要 jsdoc 来注释代码
     "semi": [0, "always"], // 总是要求加上分号
     "semi-spacing": 2, // 分号与代码之间的间隔
+    "semi-style": [2, "last"], // 分号是放到行尾还是下一行行首，默认为行尾
     "sort-keys": 0, // 属性是否需要排序
     "sort-vars": 0, // 定义多个变量时，是否按字符顺序来排序，不建议开启该规则
     "space-before-blocks": 2, // 在每一块后面需要添加一空格
@@ -261,6 +271,7 @@ module.exports = {
         "balanced": true
       }
     }], // 如果开启，则会检测注释符后是否有空白，always必须有，而never则没有
+    "switch-colon-spacing": [2, {"after": true, "before": false}], // switch 语句条件冒号前后是否加空格
     "template-tag-spacing": 2, // 标记模板内容，中间是否需要加空格，默认不需要加
     "unicode-bom": 2, //
     "wrap-regex": 2, // 字面正则表达式需要用括号括起来
@@ -305,6 +316,7 @@ module.exports = {
 
     // react rules，默认设置为报错 https://github.com/yannickcr/eslint-plugin-react
 
+    "react/default-props-match-prop-types": 0, // 每一个 prop 是否必须要有一个默认值
     "react/display-name": 0, // 是否检测需要为React Component 设置一个 displayName
     "react/forbid-component-props": 0, // 禁止某些在组件上的属性，比如 className 等
     "react/forbid-elements": [2, {"forbid": [""]}], // 禁止使用某些标签
@@ -321,12 +333,14 @@ module.exports = {
     "react/no-find-dom-node": 2, // 不建议使用 findDOMNode，因为最终该方法会被废弃
     "react/no-is-mounted": 2, // 不建议使用方法 this.isMounted()
     "react/no-multi-comp": [2, {"ignoreStateless": true}], // 不建议在一个文件中定义多个组件,但无状态的组件被或略
+    "react/no-redundant-should-component-update": 2, // 如果组件是继承 React.PureComponent，不应该再使用 shouldComponentUpdate
     "react/no-render-return-value": 2, // 使用ReactDOM.render()不应该有返回值
     "react/no-set-state": 0, // 在 Flux 或 redux 中是使用 store 维持 state 的,在这些框架中可以不使用 state
     "react/no-string-refs": 0, // 不建议使用字符串的 ref 而应该使用变量
     "react/no-unescaped-entities": 2, // 不要出现没有转义的字符直接量
     "react/no-unknown-property": 2, // 不要使用扁平或不接受的属性名称，比如class，而用className，属性名应该是驼峰式命名
     "react/no-unused-prop-types": 2, // 声明了 props 而没有被使用
+    "react/no-will-update-set-state": 2, // 不要在componentWillUpdate中调用 this.setState()，默认可以在回调函数中调用
     "react/prefer-es6-class": 2, // 应该使用 es6 来创建 class
     "react/prefer-stateless-function": 2, // 对于无状态的组件尽量使用函数来声明组件,比如 const Foo = function(props) {return <div>{props.foo}</div>;};
     "react/prop-types": 2, // 对于没有设置 propType 的 prop 给出警告
@@ -343,6 +357,7 @@ module.exports = {
     // JSX-specific rules 以下为 jsx 规则
     "react/jsx-boolean-value": 2, // 该规则可以设置为两种情况，always 和 never ，设置为 always 如果 attribute 没有设置值，会警告；设为 never，如果 attribute 有一个 true 值，会警告 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
     "react/jsx-closing-bracket-location": 0, // 检测jsx tag 闭合书写规范
+    "react/jsx-closing-tag-location": 2, // 检测关闭的标签位置是否正确
     "react/jsx-curly-spacing": 2, // 检测赋值是否有空格，默认是不应该有空格的，但换行不检测，比如 <Hello name={firstname } />;
     "react/jsx-equals-spacing": [2, "never"], // 再给属性赋值时,是否在 = 前后加上空格
     "react/jsx-filename-extension": 0, // 后缀名，是否必须是 jsx
