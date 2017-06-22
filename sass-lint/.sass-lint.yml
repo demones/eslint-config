@@ -26,11 +26,8 @@
 files:
   include:
     - scss/**/*.scss
-    - docs/assets/scss/**/*.scss
   ignore:
-    - scss/core/normalize.scss
-    - scss/core/mixins/forms.scss # sass-lint 会报错，应该是 sass-lint 的 bug，暂时先忽略
-    - docs/assets/scss/highlight.scss
+    - scss/example.scss
 options:
   formatter: stylish # 格式风格
   merge-default-rules: false
@@ -145,6 +142,10 @@ rules:
     - ignore-custom-properties: false
       order:
 
+      # 伪类内容
+
+      - content
+
       # Layout
 
       - position
@@ -242,6 +243,8 @@ rules:
       - '-moz-border-image-repeat'
       - '-o-border-image-repeat'
       - border-image-repeat
+      - border-spacing
+      - border-collapse
 
       # Overflow
 
@@ -275,7 +278,7 @@ rules:
       - hyphens
       - line-height
 
-      # Text
+      # Typographic 排版
 
       - color
       - background
@@ -352,9 +355,6 @@ rules:
       - table-layout
       - empty-cells
       - caption-side
-      - border-spacing
-      - border-collapse
-      - content
       - quotes
       - counter-reset
       - counter-increment
