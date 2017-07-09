@@ -1,5 +1,9 @@
 # 版本
 
+## version 0.4.0
+
+* 基于 eslint 4.2.0 和 eslint-plugin-react 7.1.0 来配置 rules
+
 ## version 0.3.0
 
 * 基于 eslint 4.0.0 和 eslint-plugin-react 7.1.0 来配置 rules
