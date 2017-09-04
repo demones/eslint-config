@@ -61,7 +61,7 @@ module.exports = {
     "curly": [2, "multi-line"], // 在循环或判断语句中是否需要加花括号
     "default-case": 2, // 在 switch语句中，检测是否有默认分支
     "dot-location": [2, "property"], // 在换行时，用来检测对象的点是换行之前还是之后，这里设为放在下一行
-    "dot-notation": 2, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
+    "dot-notation": 0, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
     "eqeqeq": [2, "allow-null"], // 使用恒等来比较两个变量
     "guard-for-in": 2, // 在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     "no-alert": 2, // 不允许用alert语句
@@ -193,6 +193,7 @@ module.exports = {
     "func-style": [0, "declaration", {  // 是声明式的函数，还是定义变量式的函数，我们采用声明式，但箭头函数允许变量式
       "allowArrowFunctions": true
     }],
+    "function-paren-newline": [0, "multiline"], // 函数参数书写格式，是否要换行
     "id-blacklist": 2, // 指定一些黑名单变量，这些变量不能出现在代码中，比如 "id-blacklist": [2, "data", "err", "e", "cb", "callback"],
     "id-length": 0, // 定义变量名或属性名的最小最大长度
     "id-match": 2, // 规范变量名或属性名的命名规范

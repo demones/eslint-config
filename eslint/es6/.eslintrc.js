@@ -61,7 +61,7 @@ module.exports = {
     "curly": [2, "multi-line"], // 在循环或判断语句中是否需要加花括号
     "default-case": 2, // 在 switch语句中，检测是否有默认分支
     "dot-location": [2, "property"], // 在换行时，用来检测对象的点是换行之前还是之后，这里设为放在下一行
-    "dot-notation": 2, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
+    "dot-notation": 0, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
     "eqeqeq": [2, "allow-null"], // 使用恒等来比较两个变量
     "guard-for-in": 2, // 在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     "no-alert": 2, // 不允许用alert语句
@@ -139,9 +139,6 @@ module.exports = {
     "wrap-iife": [2, "any"], // 立即执行函数是里面包裹还是外面包裹，默认是外面包裹，即 outside
     "yoda": 2, // 不允许使用 yoda 条件表达式，常量值在前的比较表达式，比如： if(1 === a){ }
 
-    // Strict Mode
-    "strict": 0,
-
     // Variables
     "init-declarations": 0, // 声明变量的时候赋值，还是在其他地方赋值，我们可以关闭该规则
     "no-catch-shadow": 2, // 在IE8或更早的浏览器中，在catch语句中引入的变量 e 会调用全局已定义的变量 e
@@ -193,6 +190,7 @@ module.exports = {
     "func-style": [0, "declaration", {  // 是声明式的函数，还是定义变量式的函数，我们采用声明式，但箭头函数允许变量式
       "allowArrowFunctions": true
     }],
+    "function-paren-newline": [0, "multiline"], // 函数参数书写格式，是否要换行
     "id-blacklist": 2, // 指定一些黑名单变量，这些变量不能出现在代码中，比如 "id-blacklist": [2, "data", "err", "e", "cb", "callback"],
     "id-length": 0, // 定义变量名或属性名的最小最大长度
     "id-match": 2, // 规范变量名或属性名的命名规范
@@ -279,8 +277,8 @@ module.exports = {
     "wrap-regex": 2, // 字面正则表达式需要用括号括起来
 
     // es6
-    "arrow-body-style": [0, "always"],// 箭头函数是否需要加上{}
-    "arrow-parens": 0,// 对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
+    "arrow-body-style": [0, "as-needed"],// 箭头函数是否需要加上{}
+    "arrow-parens": [0],// 对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
     "arrow-spacing": 2,//箭头函数中，箭头运算符前后需要添加空白
     "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
     "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
