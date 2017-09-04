@@ -194,7 +194,7 @@ module.exports = {
     "id-blacklist": 2, // 指定一些黑名单变量，这些变量不能出现在代码中，比如 "id-blacklist": [2, "data", "err", "e", "cb", "callback"],
     "id-length": 0, // 定义变量名或属性名的最小最大长度
     "id-match": 2, // 规范变量名或属性名的命名规范
-    "indent": [2, 2, {
+    "indent": [0, 2, {
       "SwitchCase": 1, "VariableDeclarator": {"var": 1, "let": 1, "const": 1},
       "FunctionDeclaration": {"parameters": "first"}
     }], // 缩进，我们采用2个空格来缩进
@@ -213,7 +213,7 @@ module.exports = {
     "max-params": [2, 8], // 限定函数参数最大个数
     "max-statements": [2, 80, {"ignoreTopLevelFunctions": true}], // 在一个函数中限定声明表达式最多个数,内部函数会或略
     "max-statements-per-line": [2, {"max": 2}], // 每行最大表达式
-    "multiline-ternary": [2, "always-multiline"], // 三元表达式，是否需要多行书写
+    "multiline-ternary": 0, // 三元表达式，是否需要多行书写
     "new-cap": 0, // 构造函数首字母应该大写
     "new-parens": 2, // 实例化构造函数时，需要加入()，即使没有参数值，所以比如 new Person 是不允许的
     "newline-per-chained-call": 0,
