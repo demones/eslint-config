@@ -55,13 +55,13 @@ module.exports = {
     "accessor-pairs": 2, // 定义对象属性时，setter和getter应该成对出现，如果不是成对的，会出现警告信息的
     "array-callback-return": 2, // 在数组方法中,回调函数应该加上 return,比如在 array.reduce中
     "block-scoped-var": 2, // 在快作用于中不允许使用var来定义变量
-    "class-methods-use-this": 0, //在 class 定义的方法中，没有使用 this，会认为是不应该的
-    "complexity": 2, // 判断语句复杂度，关闭该规则
+    "class-methods-use-this": 0, // 在 class 定义的方法中，没有使用 this，会认为是不应该的
+    "complexity": 2, // 判断语句复杂度
     "consistent-return": 0, // 不同的分支返回的类型应该一样
     "curly": [2, "multi-line"], // 在循环或判断语句中是否需要加花括号
     "default-case": 2, // 在 switch语句中，检测是否有默认分支
     "dot-location": [2, "property"], // 在换行时，用来检测对象的点是换行之前还是之后，这里设为放在下一行
-    "dot-notation": 0, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
+    "dot-notation": 2, // 对于对象属性应该用点表达式，不应该用[] var x = foo["bar"]; 是错误的，应该 var x = foo.bar;  但 var x = foo[bar]; 是正确的，因为bar是变量
     "eqeqeq": [2, "allow-null"], // 使用恒等来比较两个变量
     "guard-for-in": 2, // 在 for in 表达式中需要调用 hasOwnProperty 来判断是否为自有的属性
     "no-alert": 2, // 不允许用alert语句
@@ -80,9 +80,9 @@ module.exports = {
     "no-floating-decimal": 2, // 对于浮点数，不能省略.前或.后的数字2
     "no-global-assign": [2, {"exceptions": ["Object"]}], // 不要给全局变量赋值，需要先定义在赋值
     "no-implicit-coercion": [2, {"string": false}], // 不要使用隐身转换，应该使用直接转换，如果针对 boolean number string ，比如 var n = +foo; 应该为 var n = Number(foo); 代替
-    "no-implicit-globals": 0,
+    "no-implicit-globals": 2, // 不要直接定义全局的变量或函数，如果需要，可以写在 window 下，比如 window.foo = 1;
     "no-implied-eval": 2, // 不要使用隐式调用eval的语句，比如 setInterval("alert('Hi!');", 122);
-    "no-invalid-this": 0, // 用来检测 this 关键字使用的地方是否正确，我们可以设置关闭该规则
+    "no-invalid-this": 0, // 用来检测 this 关键字使用的地方是否正确，我们可以关闭该规则
     "no-iterator": 2, // 在ES6中有__iterator__属性，建议不要修改该属性值
     "no-labels": 2, // 不建议使用 label 表达式
     "no-lone-blocks": 2, // 禁止内部不必要的嵌套块
@@ -135,7 +135,7 @@ module.exports = {
     "prefer-promise-reject-errors": 2, // 对于Promise.reject，参数必须是一个 Error 对象，比如 Promise.reject(5); 是不允许的，应该写成 Promise.reject(new Error("something bad happened"));
     "radix": 2, // 在调用 parseInt 应该指定基数
     "require-await": 2, // 对于 async 表达式，必须有对应的 await 表达式
-    "vars-on-top": 0, // 所有变量声明是否都放在函数最上面或过程快最上面
+    "vars-on-top": 0, // 所有变量声明是否都放在函数最上面或过程块最上面
     "wrap-iife": [2, "any"], // 立即执行函数是里面包裹还是外面包裹，默认是外面包裹，即 outside
     "yoda": 2, // 不允许使用 yoda 条件表达式，常量值在前的比较表达式，比如： if(1 === a){ }
 
@@ -194,16 +194,18 @@ module.exports = {
     "id-blacklist": 2, // 指定一些黑名单变量，这些变量不能出现在代码中，比如 "id-blacklist": [2, "data", "err", "e", "cb", "callback"],
     "id-length": 0, // 定义变量名或属性名的最小最大长度
     "id-match": 2, // 规范变量名或属性名的命名规范
-    "indent": [0, 2, {
+    "implicit-arrow-linebreak": 2, // 短格式箭头函数内容是写在下面还是右侧，默认右侧
+    "indent": [1, 2, {
       "SwitchCase": 1, "VariableDeclarator": {"var": 1, "let": 1, "const": 1},
       "FunctionDeclaration": {"parameters": "first"}
     }], // 缩进，我们采用2个空格来缩进
-    "jsx-quotes": 0, // jsx属性值应该用双引号
+    "jsx-quotes": 2, // jsx属性值应该用双引号
     "key-spacing": 2, // 键值之间的空格
     "keyword-spacing": 2, // 关键字 if, else, for, while, do, switch, try, catch, finally, and with 要求有空格
     "line-comment-position": 0, // 注释是放在上面还是旁边，不需要开启该规则
     "linebreak-style": 0, // 验证 unix (LF) or windows (CRLF)
     "lines-around-comment": 0, // 注释的规范写法，在旁边或上方
+    "lines-between-class-members": 2, // 每个 class 成员之间需要加上一空行
     "max-depth": [2, 12], // 限制语句块最大嵌套深度
     "max-len": [ // 限定每行最大长度
       2, 200, {}
@@ -213,10 +215,11 @@ module.exports = {
     "max-params": [2, 8], // 限定函数参数最大个数
     "max-statements": [2, 80, {"ignoreTopLevelFunctions": true}], // 在一个函数中限定声明表达式最多个数,内部函数会或略
     "max-statements-per-line": [2, {"max": 2}], // 每行最大表达式
+    "multiline-comment-style": 0, // 注释的写法
     "multiline-ternary": 0, // 三元表达式，是否需要多行书写
     "new-cap": 0, // 构造函数首字母应该大写
     "new-parens": 2, // 实例化构造函数时，需要加入()，即使没有参数值，所以比如 new Person 是不允许的
-    "newline-per-chained-call": 0,
+    "newline-per-chained-call": [2, {ignoreChainWithDepth: 3}], // 链式调用时，是多行还是单行，对于深度小于等于3可以是单行
     "no-array-constructor": 0, // 不允许使用 new Array(2, 1, 2) 来创建数组，而改用 []
     "no-bitwise": 0, // 禁止使用位运算符,包括以下情况 var x = y | z; var x = y & z; var x = y ^ z; var x = ~ z; var x = y << z; var x = y >> z; var x = y >>> z; x |= y; x &= y; x ^= y; x <<= y; x >>= y; x >>>= y;
     "no-continue": 0, // 是否允许使用 continue语句
@@ -279,24 +282,24 @@ module.exports = {
     // es6
     "arrow-body-style": [0, "as-needed"],// 箭头函数是否需要加上{}
     "arrow-parens": [0],// 对于箭头函数，需要添加括号，比如(a) => {}; 而不应该简写为 a => {};
-    "arrow-spacing": 2,//箭头函数中，箭头运算符前后需要添加空白
-    "constructor-super": 2,//父类构造函数不应该调用 super() ，但派生类必须要调用 super()
-    "generator-star-spacing": 2,//generator functions 中 * 前应该添加空白，后面不应该有空白
-    "no-class-assign": 2,//不能再修改已经声明的类，即不能重现给已经声明的类赋其他值
-    "no-confusing-arrow": 2, //箭头函数中不建议使用引起疑惑的表达式，比如 var x = a => 1 ? 2 : 3，如果使用需要用{} 括起来
-    "no-const-assign": 2,//不能修改常量值
-    "no-dupe-class-members": 2,//类成员不能重复定义
+    "arrow-spacing": 2, // 箭头函数中，箭头运算符前后需要添加空白
+    "constructor-super": 2, // 父类构造函数不应该调用 super() ，但派生类必须要调用 super()
+    "generator-star-spacing": 2, // generator functions 中 * 前应该添加空白，后面不应该有空白
+    "no-class-assign": 2, // 不能再修改已经声明的类，即不能重现给已经声明的类赋其他值
+    "no-confusing-arrow": 2, // 箭头函数中不建议使用引起疑惑的表达式，比如 var x = a => 1 ? 2 : 3，如果使用需要用{} 括起来
+    "no-const-assign": 2, // 不能修改常量值
+    "no-dupe-class-members": 2,// 类成员不能重复定义
     "no-duplicate-imports": 2,
-    "no-new-symbol": 2, //对于 Symbol,不要使用 new,例如 var foo = new Symbol("foo");
-    "no-restricted-imports": 2,// 禁止特定的导入
-    "no-this-before-super": 2,//不允许在 super() 之前使用 this/super 语句
-    "no-useless-computed-key": 2, //禁止不必要的属性计算表达式
-    "no-useless-constructor": 2, //禁止不必要的构造方法,比如空的构造器
+    "no-new-symbol": 2, // 对于 Symbol,不要使用 new,例如 var foo = new Symbol("foo");
+    "no-restricted-imports": 2, // 禁止特定的导入
+    "no-this-before-super": 2, // 不允许在 super() 之前使用 this/super 语句
+    "no-useless-computed-key": 2, // 禁止不必要的属性计算表达式
+    "no-useless-constructor": 2, // 禁止不必要的构造方法,比如空的构造器
     "no-useless-rename": 2, // 禁止不必要的别名表达式，比如 export { foo as bar } from 'foo';
-    "no-var": 2,//在需要使用const 或 let 声明时不要使用var
-    "object-shorthand": 2,//利用简写法来定义对象属性，如 var foo = {x, y, z}; 表示 var foo = {x:x, y:y, z:z};
-    "prefer-arrow-callback": 2,//建议使用箭头函数作为回调函数
-    "prefer-const": 2,//能使用常量的地方尽量使用const
+    "no-var": 2, // 在需要使用const 或 let 声明时不要使用var
+    "object-shorthand": 2, // 利用简写法来定义对象属性，如 var foo = {x, y, z}; 表示 var foo = {x:x, y:y, z:z};
+    "prefer-arrow-callback": 2, // 建议使用箭头函数作为回调函数
+    "prefer-const": 2, // 能使用常量的地方尽量使用const
     "prefer-destructuring": [2, {
       "array": false,
     }, {
@@ -304,16 +307,14 @@ module.exports = {
     }], // 尽量使用解构表达式，比如 const [foo] = array; 或 const {bar: foo} = object;
     "prefer-numeric-literals": 2, // 不允许直接使用 parseInt 解析字面量变量，比如 parseInt("111110111", 2)，而 parseInt(foo); 是允许的
     "prefer-rest-params": 2, // 建议使用 rest (...args) 参数来代替 arguments
-    "prefer-spread": 2,//不要使用apply，应该使用扩展操作符来调用 Math.max(...args);
-    "prefer-template": 2,//建议使用模板符来替代引号，比如 var str = `Hello, ${name}!`;
-    "require-yield": 2,//generator functions 应该有 yield
-    "rest-spread-spacing": 2,//rest 表达式中间是否加空格，默认不加
+    "prefer-spread": 2, // 不要使用apply，应该使用扩展操作符来调用 Math.max(...args);
+    "prefer-template": 2, // 建议使用模板符来替代引号，比如 var str = `Hello, ${name}!`;
+    "require-yield": 2, // generator functions 应该有 yield
+    "rest-spread-spacing": 2, // rest 表达式中间是否加空格，默认不加
     "sort-imports": 0, // improt 的变量名称导入应该按顺序排位
     "symbol-description": 2, // 使用 Symbol 定义变量时，需要传入 Symbol description
     "template-curly-spacing": [2, "never"], // 模板表达式中 {} 前后是否需要空格
     "yield-star-spacing": [2, {"before": true, "after": false}] // yield * 号前后是否需要空格
-
-    // eslint-plugin-flowtype rule ，待补充
   },
   "parser": "babel-eslint", // 指定默认解析器
   "env": {
@@ -334,16 +335,12 @@ module.exports = {
 
   },
   "extends": [ // 推荐使用默认配置好的
-    "eslint:recommended",
-    "plugin:flowtype/recommended"
+    "eslint:recommended"
   ],
   "plugins": [ // 定义第三方插件
-    "flowtype"
+
   ],
   "settings": { // 设置
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": false
-    },
     "sharedData": "sharedName"
   },
   "root": true // 设置他后，子的js文件找到该 eslint配置文件后，则不再向上查找其他eslint配置文件
